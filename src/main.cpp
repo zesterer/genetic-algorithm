@@ -1,8 +1,8 @@
-#include "stdio.h"
+#include "world.h"
 
 int main(int argc, char* argv[])
 {
-	printf("Hello, World!\n");
-
-	return 0;
+	Genetic::World world;
+	
+	return world.run();
 }
