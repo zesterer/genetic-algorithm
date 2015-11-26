@@ -1,3 +1,7 @@
+# Basics
+build
+build-linux
+
 # Compiled Object files
 *.slo
 *.lo
