@@ -1,4 +1,4 @@
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/image)
 
 set(APP_DIRS ${APP_DIRS}
 ${CMAKE_CURRENT_SOURCE_DIR}
@@ -6,5 +6,4 @@ PARENT_SCOPE)
 
 set(APP_SRCS ${APP_SRCS}
 ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/world.cpp
 PARENT_SCOPE)

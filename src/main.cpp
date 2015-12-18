@@ -1,8 +1,12 @@
-#include "world.h"
+#include "stdio.h"
+
+#include "image/surface.h"
 
 int main(int argc, char* argv[])
 {
-	Genetic::World world;
+	printf("Hello, World!\n");
 	
-	return world.run();
+	AI::Image::FSurface surface(640, 480);
+	
+	return 0;
 }
