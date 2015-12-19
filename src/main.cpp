@@ -6,6 +6,7 @@
 #include "image/imageloader.h"
 #include "image/negativefilter.h"
 #include "image/gradientfilter.h"
+#include "image/gaussianfilter.h"
 
 int main(int argc, char* argv[])
 {

@@ -16,13 +16,13 @@ namespace AI
 			protected:
 		 		int w = 0;
 		  		int h = 0;
+		  		int sanifyX(int x);
+				int sanifyY(int y);
+				int sanifyI(int i);
 			public:
 				void clear();
 				int getW();
 				int getH();
-				int sanifyX(int x);
-				int sanifyY(int y);
-				int sanifyI(int i);
 		};
 		
 		class ISurface;

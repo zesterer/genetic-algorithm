@@ -1,13 +1,27 @@
-#include "gradientfilter.h"
+#include "gaussianfilter.h"
 #include "kernel.h"
 
 namespace AI
 {
 	namespace Image
 	{
-		FSurface* GradientFilter::applyToFSurface(FSurface* src)
+		FSurface* GaussianFilter::applyToFSurface(FSurface* src)
 		{
 			FSurface* dest = new FSurface(src->getW(), src->getH());
+			
+			const int blur_radius = 4;
+			
+			Kernel blur_kernel(blur_radius * 2 + 1, blur_radius * 2 + 1);
+			
+			//Set up the blur kernel
+			for (int x = 0; x < blur_kernel.getW(); x ++)
+			{
+				for (int y = 0; y < blur_kernel.getH(); y ++)
+				{
+					float dist = std::sqrt(std::pow(x - (blur_radius + 0.5f), 2) + std::pow(y - (blur_radius + 0.5f), 2));
+					blur_kernel.setPixel(x, y, 1.0f - dist / blur_radius);
+				}
+			}
 			
 			for (int x = 0; x < src->getW(); x ++)
 			{

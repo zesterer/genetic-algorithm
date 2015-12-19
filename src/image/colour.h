@@ -65,7 +65,7 @@ namespace AI
 	  
 	  	IColour FColour::toIColour()
 		{
-		  	return IColour((byte)std::min((this->r * 256), 255.0f), (byte)std::min((this->g * 256), 255.0f), (byte)std::min((this->b * 256), 255.0f), (byte)std::min((this->a * 256), 255.0f));
+		  	return IColour((byte)std::max(std::min((this->r * 256), 255.0f), 0.0f), (byte)std::max(std::min((this->g * 256), 255.0f), 0.0f), (byte)std::max(std::min((this->b * 256), 255.0f), 0.0f), (byte)std::max(std::min((this->a * 256), 255.0f), 0.0f));
 		}
 	}
 }
