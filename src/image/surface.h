@@ -20,6 +20,9 @@ namespace AI
 				void clear();
 				int getW();
 				int getH();
+				int sanifyX(int x);
+				int sanifyY(int y);
+				int sanifyI(int i);
 		};
 		
 		class ISurface;
@@ -52,6 +55,7 @@ namespace AI
 		 		void setPixel(int x, int y, FColour colour);
 		 		void setPixel(int i, FColour colour);
 		 		ISurface* convertToISurface();
+		 		sf::Texture* convertToTexture();
 		};
 	}
 }

@@ -4,23 +4,25 @@ namespace AI
 {
 	namespace Image
 	{
-		FSurface* NegativeFilter::applyToFSurface(FSurface* surface)
+		FSurface* NegativeFilter::applyToFSurface(FSurface* src)
 		{
-			for (int x = 0; x < surface->getW(); x ++)
+			FSurface* dest = new FSurface(src->getW(), src->getH());
+			
+			for (int x = 0; x < src->getW(); x ++)
 			{
-				for (int y = 0; y < surface->getH(); y ++)
+				for (int y = 0; y < src->getH(); y ++)
 				{
-					FColour col = surface->getPixel(x, y);
+					FColour col = src->getPixel(x, y);
 					
 					col.r = 1.0f - col.r;
 					col.g = 1.0f - col.g;
 					col.b = 1.0f - col.b;
 					
-					surface->setPixel(x, y, col);
+					dest->setPixel(x, y, col);
 				}
 			}
 			
-			return surface;
+			return dest;
 		}
 	}
 }

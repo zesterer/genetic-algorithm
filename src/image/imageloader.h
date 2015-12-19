@@ -12,7 +12,7 @@ namespace AI
 	  	class ImageLoader
 		{
 			public:
-				static ISurface* loadPNG(std::string filename);
+				static FSurface* loadPNG(std::string filename);
 		};
 	}
 }

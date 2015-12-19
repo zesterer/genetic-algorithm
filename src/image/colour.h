@@ -24,6 +24,12 @@ namespace AI
 			  	this->b = b;
 			  	this->a = a;
 			}
+			
+			IColour greyScale()
+		  	{
+		  		int avg = (this->r + this->g + this->b) / 3;
+		  		return IColour(avg, avg, avg, this->a);
+		  	}
 		  	
 		  	inline FColour toFColour();
 		};
@@ -44,6 +50,12 @@ namespace AI
 			}
 		  
 		  	inline IColour toIColour();
+		  	
+		  	FColour greyScale()
+		  	{
+		  		float avg = (this->r + this->g + this->b) / 3.0f;
+		  		return FColour(avg, avg, avg, this->a);
+		  	}
 		};
 	  
 	  	FColour IColour::toFColour()
@@ -53,7 +65,7 @@ namespace AI
 	  
 	  	IColour FColour::toIColour()
 		{
-		  	return IColour((byte)(this->r * 256), (byte)(this->g * 256), (byte)(this->b * 256), (byte)(this->a * 256));
+		  	return IColour((byte)std::min((this->r * 256), 255.0f), (byte)std::min((this->g * 256), 255.0f), (byte)std::min((this->b * 256), 255.0f), (byte)std::min((this->a * 256), 255.0f));
 		}
 	}
 }

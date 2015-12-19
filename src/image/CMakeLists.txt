@@ -8,4 +8,5 @@ set(APP_SRCS ${APP_SRCS}
 ${CMAKE_CURRENT_SOURCE_DIR}/surface.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/imageloader.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/negativefilter.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/gradientfilter.cpp
 PARENT_SCOPE)

@@ -6,13 +6,13 @@ namespace AI
 {
 	namespace Image
 	{
-		ISurface* ImageLoader::loadPNG(std::string filename)
+		FSurface* ImageLoader::loadPNG(std::string filename)
 		{
 			sf::Image tmp;
 			
 			if (tmp.loadFromFile(filename))
 			{
-				ISurface* surface = new ISurface(tmp.getSize().x, tmp.getSize().y);
+				FSurface* surface = new FSurface(tmp.getSize().x, tmp.getSize().y);
 				
 				for (int x = 0; x < (int)tmp.getSize().x; x ++)
 				{
@@ -23,7 +23,7 @@ namespace AI
 						colour.g = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 1];
 						colour.b = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 2];
 						colour.a = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 3];
-						surface->setPixel(x, y, colour);
+						surface->setPixel(x, y, colour.toFColour());
 					}
 				}
 				

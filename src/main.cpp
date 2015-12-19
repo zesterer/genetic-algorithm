@@ -5,13 +5,18 @@
 #include "image/surface.h"
 #include "image/imageloader.h"
 #include "image/negativefilter.h"
+#include "image/gradientfilter.h"
 
 int main(int argc, char* argv[])
 {
 	printf("Hello, World!\n");
 	
-	AI::Image::ISurface* test_surface = AI::Image::ImageLoader::loadPNG("/home/barry/Pictures/tripleright.jpg");
-	sf::Texture* test_texture = AI::Image::NegativeFilter::applyToFSurface(test_surface->convertToFSurface())->convertToISurface()->convertToTexture();
+	AI::Image::FSurface* test_fsurface = AI::Image::ImageLoader::loadPNG("/home/barry/Pictures/Straw-men-Straw.jpg");
+	AI::Image::FSurface* new_fsurface = AI::Image::GradientFilter::applyToFSurface(test_fsurface);
+	sf::Texture* test_texture = new_fsurface->convertToTexture();
+	
+	delete test_fsurface;
+	delete new_fsurface;
 	
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Test window");
 	
@@ -23,6 +28,8 @@ int main(int argc, char* argv[])
 			if (e.type == sf::Event::Closed)
 				window.close();
 		}
+		
+		window.clear(sf::Color::Black);
 		
 		//Draw the texture
 		sf::Sprite tmp;

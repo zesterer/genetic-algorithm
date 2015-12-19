@@ -9,7 +9,7 @@ namespace AI
 	{
 		struct Filter
 		{
-			static FSurface* applyToFSurface(FSurface* surface);
+			static FSurface* applyToFSurface(FSurface* src);
 		};
 	}
 }
