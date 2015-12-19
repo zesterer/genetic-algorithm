@@ -15,15 +15,16 @@ add_definitions(-std=c++11 -Wall -g3)
 find_package(PkgConfig REQUIRED)
 
 #Set CMake modules path
-#set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules" ${CMAKE_MODULE_PATH})
 
-#pkg_search_module(FreeImage REQUIRED)
+#Find SFML
+find_package(SFML 2 REQUIRED system window graphics network audio)
 
-if (FREEIMAGE_FOUND)
-	set(APP_DIRS ${APP_DIRS} ${FREEIMAGE_INCLUDE_DIR})
-	set(APP_LIBS ${APP_LIBS} ${FREEIMAGE_LIBRARIES})
+if (SFML_FOUND)
+	set(APP_DIRS ${APP_DIRS} ${SFML_INCLUDE_DIR})
+	set(APP_LIBS ${APP_LIBS} ${SFML_LIBRARIES})
 else ()
-	message("FreeImage could not be found, and is required to build this library.")
+	message("SFML could not be found, and is required to build this library.")
 endif ()
 
 

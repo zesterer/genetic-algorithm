@@ -1,6 +1,6 @@
 #include "imageloader.h"
 
-#include "FreeImage.h"
+#include "SFML/Graphics.hpp"
 
 namespace AI
 {
@@ -8,13 +8,29 @@ namespace AI
 	{
 		ISurface* ImageLoader::loadPNG(std::string filename)
 		{
-			FIBITMAP* image = FreeImage_Load(FIF_PNG, filename.c_str(), PNG_DEFAULT);
-			image = FreeImage_ConvertTo24Bits(image);
+			sf::Image tmp;
 			
-			if (image != nullptr)
+			if (tmp.loadFromFile(filename))
 			{
-				//TODO - Load the image into an ISurface...
+				ISurface* surface = new ISurface(tmp.getSize().x, tmp.getSize().y);
+				
+				for (int x = 0; x < (int)tmp.getSize().x; x ++)
+				{
+					for (int y = 0; y < (int)tmp.getSize().y; y ++)
+					{
+						IColour colour;
+						colour.r = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 0];
+						colour.g = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 1];
+						colour.b = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 2];
+						colour.a = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 3];
+						surface->setPixel(x, y, colour);
+					}
+				}
+				
+				return surface;
 			}
+			else
+				return nullptr;
 		}
 	}
 }

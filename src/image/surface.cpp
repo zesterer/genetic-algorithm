@@ -4,6 +4,16 @@ namespace AI
 {
 	namespace Image
 	{
+		int Surface::getW()
+		{
+			return this->w;
+		}
+		
+		int Surface::getH()
+		{
+			return this->h;
+		}
+		
 		ISurface::ISurface(int w, int h)
 		{
 			this->w = w;
@@ -21,6 +31,47 @@ namespace AI
 				this->pixels.emplace_back();
 		}
 		
+		void ISurface::setPixel(int x, int y, IColour colour)
+		{
+			this->pixels[this->w * y + x] = colour;
+		}
+		
+		void ISurface::setPixel(int i, IColour colour)
+		{
+			this->pixels[i] = colour;
+		}
+		
+		sf::Texture* ISurface::convertToTexture()
+		{
+			sf::Image tmp;
+			tmp.create(this->w, this->h, (sf::Uint8*)(void*)&this->pixels);
+			
+			sf::Texture* tex = new sf::Texture();
+			tex->loadFromImage(tmp);
+			
+			return tex;
+		}
+		
+		FSurface* ISurface::convertToFSurface()
+		{
+			FSurface* tmp = new FSurface(this->w, this->h);
+			
+			for (int i = 0; i < (int)this->pixels.size(); i ++)
+				tmp->setPixel(i, this->pixels[i].toFColour());
+			
+			return tmp;
+		}
+		
+		IColour ISurface::getPixel(int x, int y)
+		{
+			return this->pixels[this->w * y + x];
+		}
+		
+		IColour ISurface::getPixel(int i)
+		{
+			return this->pixels[i];
+		}
+		
 		FSurface::FSurface(int w, int h)
 		{
 			this->w = w;
@@ -36,6 +87,36 @@ namespace AI
 			
 			for (int i = 0; i < this->w * this->h; i ++)
 				this->pixels.emplace_back();
+		}
+		
+		void FSurface::setPixel(int x, int y, FColour colour)
+		{
+			this->pixels[this->w * y + x] = colour;
+		}
+		
+		void FSurface::setPixel(int i, FColour colour)
+		{
+			this->pixels[i] = colour;
+		}
+		
+		ISurface* FSurface::convertToISurface()
+		{
+			ISurface* tmp = new ISurface(this->w, this->h);
+			
+			for (int i = 0; i < (int)this->pixels.size(); i ++)
+				tmp->setPixel(i, this->pixels[i].toIColour());
+			
+			return tmp;
+		}
+		
+		FColour FSurface::getPixel(int x, int y)
+		{
+			return this->pixels[this->w * y + x];
+		}
+		
+		FColour FSurface::getPixel(int i)
+		{
+			return this->pixels[i];
 		}
 	}
 }
