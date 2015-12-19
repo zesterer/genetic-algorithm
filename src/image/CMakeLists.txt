@@ -13,4 +13,5 @@ ${CMAKE_CURRENT_SOURCE_DIR}/kernel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/gaussianfilter.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/sobelfilter.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/grayscalefilter.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/thresholdfilter.cpp
 PARENT_SCOPE)
