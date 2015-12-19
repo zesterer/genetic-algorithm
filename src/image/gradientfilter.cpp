@@ -4,7 +4,7 @@ namespace AI
 {
 	namespace Image
 	{
-		FSurface* GradientFilter::applyToFSurface(FSurface* src)
+		FSurface* GradientFilter::applyToFSurface(FSurface* src, bool delete_src)
 		{
 			FSurface* dest = new FSurface(src->getW(), src->getH());
 			
@@ -25,11 +25,14 @@ namespace AI
 					col.g = std::sqrt(std::pow(col0.g - col1.g, 2) + std::pow(col2.g - col3.g, 2));
 					col.b = std::sqrt(std::pow(col0.b - col1.b, 2) + std::pow(col2.b - col3.b, 2));
 					
-					col = col.greyScale();
+					col = col.toGrayscale();
 					
 					dest->setPixel(x, y, col);
 				}
 			}
+			
+			if (delete_src)
+				delete src;
 			
 			return dest;
 		}

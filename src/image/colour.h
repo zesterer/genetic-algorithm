@@ -27,7 +27,7 @@ namespace AI
 		  	
 		  	inline FColour toFColour();
 		  	
-		  	IColour greyScale()
+		  	IColour toGrayscale()
 		  	{
 		  		int avg = (this->r + this->g + this->b) / 3;
 		  		return IColour(avg, avg, avg, this->a);
@@ -70,7 +70,7 @@ namespace AI
 		  
 		  	inline IColour toIColour();
 		  	
-		  	FColour greyScale()
+		  	FColour toGrayscale()
 		  	{
 		  		float avg = (this->r + this->g + this->b) / 3.0f;
 		  		return FColour(avg, avg, avg, this->a);

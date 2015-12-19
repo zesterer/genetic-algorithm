@@ -5,7 +5,7 @@ namespace AI
 {
 	namespace Image
 	{
-		FSurface* GaussianFilter::applyToFSurface(FSurface* src, int radius)
+		FSurface* GaussianFilter::applyToFSurface(FSurface* src, bool delete_src, int radius)
 		{
 			FSurface* dest = new FSurface(src->getW(), src->getH());
 			
@@ -16,7 +16,7 @@ namespace AI
 			{
 				for (int y = 0; y < blur_kernel.getH(); y ++)
 				{
-					float dist = std::sqrt(std::pow(x - (radius + 0.5f), 2) + std::pow(y - (radius + 0.5f), 2));
+					float dist = std::sqrt(std::pow(x - radius, 2) + std::pow(y - radius, 2));
 					blur_kernel.setPixel(x, y, 1.0f - dist / radius);
 				}
 			}
@@ -34,8 +34,14 @@ namespace AI
 					col.b = blur_kernel.getValueFromFSurface(x - radius, y - radius, src, 2) / blur_kernel.getTotal();
 					
 					dest->setPixel(x, y, col);
+					
+					if ((src->getH() * x + y) % 10000 == 0)
+						printf("%f%\n", 100.0f * (src->getH() * x + y) / (src->getW() * src->getH()));
 				}
 			}
+			
+			if (delete_src)
+				delete src;
 			
 			return dest;
 		}

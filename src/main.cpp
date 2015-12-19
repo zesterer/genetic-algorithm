@@ -8,13 +8,16 @@
 #include "image/gradientfilter.h"
 #include "image/gaussianfilter.h"
 #include "image/sobelfilter.h"
+#include "image/grayscalefilter.h"
 
 int main(int argc, char* argv[])
 {
 	AI::Image::FSurface* test_fsurface = AI::Image::ImageLoader::loadPNG("/home/barry/Pictures/Straw-men-Straw.jpg");
 	
-	test_fsurface = AI::Image::GaussianFilter::applyToFSurface(test_fsurface, 3);
-	//test_fsurface = AI::Image::SobelFilter::applyToFSurface(test_fsurface);
+	//For some weird fucking reason, it doesn't like the below method doing a deallocation on the FSurface object (so delete_src if false here)
+	test_fsurface = AI::Image::GaussianFilter::applyToFSurface(test_fsurface, false, 4);
+	test_fsurface = AI::Image::GrayscaleFilter::applyToFSurface(test_fsurface, true);
+	test_fsurface = AI::Image::SobelFilter::applyToFSurfaceGradiented(test_fsurface, true);
 	
 	sf::Texture* test_texture = test_fsurface->convertToTexture();
 	

@@ -9,7 +9,8 @@ namespace AI
 	{
 		struct SobelFilter : public Filter
 		{
-			static FSurface* applyToFSurface(FSurface* src);
+			static FSurface* applyToFSurface(FSurface* src, bool delete_src = false);
+			static FSurface* applyToFSurfaceGradiented(FSurface* src, bool delete_src = false);
 		};
 	}
 }

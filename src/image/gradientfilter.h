@@ -9,7 +9,7 @@ namespace AI
 	{
 		struct GradientFilter : public Filter
 		{
-			static FSurface* applyToFSurface(FSurface* src);
+			static FSurface* applyToFSurface(FSurface* src, bool delete_src = false);
 		};
 	}
 }

@@ -1,5 +1,5 @@
-#ifndef IMAGE_NEGATIVEFILTER_H
-#define IMAGE_NEGATIVEFILTER_H
+#ifndef IMAGE_GRAYSCALEFILTER_H
+#define IMAGE_GRAYSCALEFILTER_H
 
 #include "filter.h"
 
@@ -7,7 +7,7 @@ namespace AI
 {
 	namespace Image
 	{
-		struct NegativeFilter : public Filter
+		struct GrayscaleFilter : public Filter
 		{
 			static FSurface* applyToFSurface(FSurface* src, bool delete_src = false);
 		};
