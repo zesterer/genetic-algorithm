@@ -9,7 +9,7 @@ namespace AI
 		{
 			FSurface* dest = new FSurface(src->getW(), src->getH());
 			
-			const int blur_radius = 4;
+			const int blur_radius = 10;
 			
 			Kernel blur_kernel(blur_radius * 2 + 1, blur_radius * 2 + 1);
 			
@@ -23,24 +23,17 @@ namespace AI
 				}
 			}
 			
+			blur_kernel.recalculate();
+			
 			for (int x = 0; x < src->getW(); x ++)
 			{
 				for (int y = 0; y < src->getH(); y ++)
 				{
 					FColour col(1.0f, 1.0f, 1.0f, 1.0f);
 					
-					FColour col0 = src->getPixel(x - 1, y);
-					FColour col1 = src->getPixel(x + 1, y);
-					FColour col2 = src->getPixel(x, y - 1);
-					FColour col3 = src->getPixel(x, y + 1);
-					
-					//printf("r=%fg=%fb=%fa=%f\n", col0.r, col0.b, col0.b, col0.a);
-					
-					col.r = std::sqrt(std::pow(col0.r - col1.r, 2) + std::pow(col2.r - col3.r, 2));
-					col.g = std::sqrt(std::pow(col0.g - col1.g, 2) + std::pow(col2.g - col3.g, 2));
-					col.b = std::sqrt(std::pow(col0.b - col1.b, 2) + std::pow(col2.b - col3.b, 2));
-					
-					col = col.greyScale();
+					col.r = blur_kernel.getValueFromFSurface(x - blur_radius, y - blur_radius, src, 0);
+					col.g = blur_kernel.getValueFromFSurface(x - blur_radius, y - blur_radius, src, 1);
+					col.b = blur_kernel.getValueFromFSurface(x - blur_radius, y - blur_radius, src, 2);
 					
 					dest->setPixel(x, y, col);
 				}

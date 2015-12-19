@@ -14,7 +14,10 @@ namespace AI
 			private:
 				int w = 0;
 				int h = 0;
+				
 				std::vector<float> pixels;
+				float total = 0.0f;
+				
 				int sanifyX(int x);
 				int sanifyY(int y);
 			public:
@@ -26,7 +29,9 @@ namespace AI
 			 	int getW() { return this->w; }
 			 	int getH() { return this->h; }
 			 	
-			 	FSurface* applyToFSurface(FSurface* src);
+			 	float getValueFromFSurface(int x, int y, FSurface* src, int channel);
+			 	
+			 	void recalculate();
 		};
 	}
 }

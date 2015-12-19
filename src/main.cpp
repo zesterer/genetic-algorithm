@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
 {
 	printf("Hello, World!\n");
 	
-	AI::Image::FSurface* test_fsurface = AI::Image::ImageLoader::loadPNG("/home/barry/Pictures/Straw-men-Straw.jpg");
-	AI::Image::FSurface* new_fsurface = AI::Image::GradientFilter::applyToFSurface(test_fsurface);
+	AI::Image::FSurface* test_fsurface = AI::Image::ImageLoader::loadPNG("/home/barry/Pictures/rose.jpg");
+	AI::Image::FSurface* new_fsurface = AI::Image::GaussianFilter::applyToFSurface(test_fsurface);
 	sf::Texture* test_texture = new_fsurface->convertToTexture();
 	
 	delete test_fsurface;

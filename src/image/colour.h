@@ -24,14 +24,33 @@ namespace AI
 			  	this->b = b;
 			  	this->a = a;
 			}
-			
-			IColour greyScale()
+		  	
+		  	inline FColour toFColour();
+		  	
+		  	IColour greyScale()
 		  	{
 		  		int avg = (this->r + this->g + this->b) / 3;
 		  		return IColour(avg, avg, avg, this->a);
 		  	}
 		  	
-		  	inline FColour toFColour();
+		  	byte& operator[](const int index)
+		  	{
+		  		switch (index)
+		  		{
+		  			case 0:
+		  				return this->r;
+		  				break;
+		  			case 1:
+		  				return this->g;
+		  				break;
+		  			case 2:
+		  				return this->b;
+		  				break;
+		  			default:
+		  				return this->r;
+		  				break;
+		  		}
+		  	}
 		};
 	  	
 	  	struct FColour
@@ -55,6 +74,25 @@ namespace AI
 		  	{
 		  		float avg = (this->r + this->g + this->b) / 3.0f;
 		  		return FColour(avg, avg, avg, this->a);
+		  	}
+		  	
+		  	float& operator[](const int index)
+		  	{
+		  		switch (index)
+		  		{
+		  			case 0:
+		  				return this->r;
+		  				break;
+		  			case 1:
+		  				return this->g;
+		  				break;
+		  			case 2:
+		  				return this->b;
+		  				break;
+		  			default:
+		  				return this->r;
+		  				break;
+		  		}
 		  	}
 		};
 	  
