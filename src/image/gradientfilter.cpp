@@ -1,5 +1,4 @@
 #include "gradientfilter.h"
-#include "kernel.h"
 
 namespace AI
 {

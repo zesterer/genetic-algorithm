@@ -19,10 +19,14 @@ namespace AI
 					for (int y = 0; y < (int)tmp.getSize().y; y ++)
 					{
 						IColour colour;
+						
 						colour.r = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 0];
 						colour.g = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 1];
 						colour.b = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 2];
 						colour.a = tmp.getPixelsPtr()[(tmp.getSize().x * y + x) * 4 + 3];
+						
+						colour.a = 255;
+						
 						surface->setPixel(x, y, colour.toFColour());
 					}
 				}

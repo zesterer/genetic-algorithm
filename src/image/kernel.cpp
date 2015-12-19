@@ -4,12 +4,18 @@ namespace AI
 {
 	namespace Image
 	{
-		Kernel::Kernel(int w, int h)
+		Kernel::Kernel(int w, int h, float array[])
 		{
 			this->w = w;
 			this->h = h;
 			
 			this->clear();
+			
+			if (array != nullptr)
+			{
+				for (int i = 0; i < this->w * this->h; i ++)
+					this->pixels[i] = array[i];
+			}
 		}
 		
 		int Kernel::sanifyX(int x)
@@ -49,7 +55,7 @@ namespace AI
 			{
 				for (int yy = 0; yy < this->h; yy ++)
 				{
-					total += (src->getPixel(x + xx, y + yy)[channel] * this->getPixel(xx, yy)) / this->total;
+					total += (src->getPixel(x + xx, y + yy)[channel] * this->getPixel(xx, yy));
 				}
 			}
 			

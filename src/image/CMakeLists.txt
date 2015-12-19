@@ -11,4 +11,5 @@ ${CMAKE_CURRENT_SOURCE_DIR}/negativefilter.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/gradientfilter.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/kernel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/gaussianfilter.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/sobelfilter.cpp
 PARENT_SCOPE)

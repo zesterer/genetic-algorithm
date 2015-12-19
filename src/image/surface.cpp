@@ -79,7 +79,7 @@ namespace AI
 		
 		IColour ISurface::getPixel(int x, int y)
 		{
-			return this->pixels[this->w * this->sanifyY(y) + x];
+			return this->pixels[this->w * this->sanifyY(y) + this->sanifyX(x)];
 		}
 		
 		IColour ISurface::getPixel(int i)

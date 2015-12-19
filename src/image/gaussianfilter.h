@@ -9,7 +9,7 @@ namespace AI
 	{
 		struct GaussianFilter : public Filter
 		{
-			static FSurface* applyToFSurface(FSurface* src);
+			static FSurface* applyToFSurface(FSurface* src, int radius = 4);
 		};
 	}
 }
