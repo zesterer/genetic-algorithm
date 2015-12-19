@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 	AI::Image::FSurface* test_fsurface = AI::Image::ImageLoader::loadPNG("/home/barry/Pictures/Straw-men-Straw.jpg");
 	
 	test_fsurface = AI::Image::GaussianFilter::applyToFSurface(test_fsurface, 3);
-	test_fsurface = AI::Image::SobelFilter::applyToFSurface(test_fsurface);
+	//test_fsurface = AI::Image::SobelFilter::applyToFSurface(test_fsurface);
 	
 	sf::Texture* test_texture = test_fsurface->convertToTexture();
 	
